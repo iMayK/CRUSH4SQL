@@ -1,2 +1,1 @@
-*.pickle
-**/*.pickle
+demo_views/utils/openai_docs_unclean_embedding.pickle
