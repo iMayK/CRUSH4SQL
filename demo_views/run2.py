@@ -1,24 +1,15 @@
 import re
 
+import torch
+
 from utils.openai_main import get_hallucinated_segments, get_openai_embedding
 
 from utils.score import get_scored_docs
 from utils.greedy_selection import greedy_select
 
-from utils.prompts import PROMPTS
 from utils.sql_utils import generate_sql
 
-def extract_items(segment):
-    # Check if the string matches the pattern word1(word2, word3)
-    pattern = r'(\w+)\(([\w\s,]+)\)'
-    match = re.match(pattern, segment)
-
-    if match:
-        word1 = match.group(1).replace(' ', '_')
-        words = match.group(2).split(', ')
-        return [f"{word1}.{word.replace(' ', '_')}" for word in words]
-    else:
-        return None
+from utils.utils import extract_items, get_relevant_fewshot_examples
 
 api_key = input('AZURE_OPENAI_API_KEY: ')
 endpoint = input('AZURE_OPENAI_ENDPOINT: ')
@@ -44,10 +35,12 @@ while 1:
 
     if len(correct_txt_sql_pairs) > 0:
         prompting_type = 'fewshot'
+        fewshot_examples = get_relevant_fewshot_examples(question, correct_txt_sql_pairs, api_key, endpoint, topk=3)
     else:
         prompting_type = 'base'
+        fewshot_examples = []
 
-    prompt, response, schema = generate_sql(sql_input, prompting_type=prompting_type, correct_txt_sql_pairs=correct_txt_sql_pairs)
+    prompt, response, schema = generate_sql(sql_input, prompting_type=prompting_type, fewshot_examples=fewshot_examples)
 
     print(f'\nprompt:\n {prompt}\n\n')
     print(response)
@@ -66,5 +59,5 @@ while 1:
 
 ###
 '''
-    here, we will collect few shots examples on the go and use them in a fewshot prompt style
+    here, we will collect few shot examples on the go and use them in a fewshot prompt style for future questions
 '''
