@@ -28,7 +28,6 @@ prompting_type = prompting_types[int(input('your input: '))]
 
 api_key = input('AZURE_OPENAI_API_KEY: ')
 endpoint = input('AZURE_OPENAI_ENDPOINT: ')
-correct_txt_sql_pairs = []
 
 question = input('\n\nquestion: ')
 decomposition_prompt_used = 'hallucinate_schema_ndap' 
@@ -51,15 +50,5 @@ prompt, response, schema = generate_sql(sql_input, prompting_type=prompting_type
 
 print(f'\nSchema:\n {schema}\n\n')
 print(response)
-
-check = input('\n\nGenerated SQL maybe incorrect. Want to register correct SQL? Press "y" to `proceed` and "n" to `skip`: ')
-if check == 'y':
-    correct_sql = input('Enter correct SQL: ')
-    correct_txt_sql_pairs.append(
-        {
-            'question': question,
-            'sql': correct_sql,
-        }
-    )
 
 

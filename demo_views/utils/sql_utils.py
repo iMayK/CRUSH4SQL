@@ -67,7 +67,7 @@ def generate(prompt):
             return f"An error occured: {str(e)}"
     return response['choices'][0]['message']['content'] 
 
-def generate_sql(item, prompting_type='base'):
+def generate_sql(item, prompting_type='base', correct_txt_sql_pairs=[]):
     schema = create_schema(item['docs'])
     schema_str = create_schema_str(schema)
 
@@ -75,7 +75,13 @@ def generate_sql(item, prompting_type='base'):
 
     prompt_template = PROMPTS[prompting_type]
 
-    prompt = prompt_template.format(question, schema_str, question)
+    if prompting_type == 'base':
+        prompt = prompt_template.format(question, schema_str, question)
+    else:
+        examples = ""
+        for item in correct_txt_sql_pairs:
+            examples += f"question: {item['question']}\nsql: {item['sql']}\n\n"
+        prompt = prompt_template.format(question, schema_str, examples, question)  
     pred_sql = generate(prompt)
 
     return prompt, pred_sql, schema_str
