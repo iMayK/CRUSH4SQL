@@ -1,8 +1,4 @@
-import re
-
-import torch
-
-from utils.openai_main import get_hallucinated_segments, get_openai_embedding
+from utils.openai_main import get_hallucinated_segments
 
 from utils.score import get_scored_docs
 from utils.greedy_selection import greedy_select
