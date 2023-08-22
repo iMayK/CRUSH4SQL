@@ -1,6 +1,4 @@
 import re
-import json
-from tqdm import tqdm
 
 from utils.openai_main import get_hallucinated_segments, get_openai_embedding
 

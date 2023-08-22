@@ -7,7 +7,7 @@ from utils.openai_main import get_openai_embedding
 
 import torch
 
-device = 'cuda'
+#device = 'cuda'
 
 def get_contextual_emb(question, segments):
     all_text = []
@@ -74,7 +74,8 @@ def get_scored_docs(
     A = []
     for segment in segments:
         A.append(get_openai_embedding(segment, api_key, endpoint))
-    A = torch.stack(A).to(device)                                         # num_of_segments x d                                                      
+    #A = torch.stack(A).to(device)                                         # num_of_segments x d                                                      
+    A = torch.stack(A)                                                     # num_of_segments x d                                                      
         
     #A = get_openai_embedding(segments, api_key, endpoint)                 # num_of_segments x d -> WRONG
     #A = get_contextual_emb(question, segments)                            # num_of_segments x d
@@ -89,7 +90,8 @@ def get_scored_docs(
 
     embedding_file_path = os.path.join(file_dir, 'openai_docs_unclean_embedding.pickle')
     with open(embedding_file_path, 'rb') as doc_pkl:
-        docs_embedding = pickle.load(doc_pkl).to(device)
+        #docs_embedding = pickle.load(doc_pkl).to(device)
+        docs_embedding = pickle.load(doc_pkl)
         #print(docs_embedding.shape)
 
     docs = ranking(A, docs_embedding, list_schema_elements, segments, aggr_type=aggr_type)
