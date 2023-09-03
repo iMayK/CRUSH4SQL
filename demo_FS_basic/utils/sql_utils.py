@@ -79,8 +79,8 @@ def generate_sql(item, prompting_type='base', fewshot_examples=[]):
         prompt = prompt_template.format(question, schema_str, question)
     else:
         examples = ""
-        for item in fewshot_examples:
-            examples += f"question: {item['question']}\nsql: {item['sql']}\n\n"
+        for idx, item in enumerate(fewshot_examples):
+            examples += f"Question {idx+1}: {item['question']}\nSQL: {item['sql']}\n\n"
         prompt = prompt_template.format(question, schema_str, examples, question)  
     pred_sql = generate(prompt)
 

@@ -58,7 +58,7 @@ def ndap_pipeline(question, api_key, endpoint, correct_txt_sql_pairs):
     decomposition_prompt_used = 'hallucinate_schema_ndap' 
 
     segments = get_hallucinated_segments(decomposition_prompt_used, question, api_key, endpoint)
-    print('\nHallucinated segments:')
+    print('\nHallucinated schema:')
     for segment in segments:
         print(segment)
 
