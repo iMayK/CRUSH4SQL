@@ -81,6 +81,8 @@ def get_feedback(question, predicted_sql):
         new_row.extend(["no", "NA", "no", "NA", "no", predicted_sql, "no", "all_good"])
         print('\nThank you for the feedback!')
 
+    return new_row
+
 def submit_response(new_row):
     worksheet = gc.open_by_url('https://docs.google.com/spreadsheets/d/1PTiGJcXDntJNPVjkFRdgSersW4HqkICQtDc7zezr6w8/edit#gid=0').sheet1
 
