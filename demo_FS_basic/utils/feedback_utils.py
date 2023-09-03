@@ -36,16 +36,17 @@ def get_feedback(question, predicted_sql):
 
     if choosen_option == 1:
         response = input('\nCan you provide correct table(s)? Press `y` for yes, `n` for no: ')
-        correct_tables = "-"
+        correct_tables = "NA"
         if response == 'y':
             correct_tables = input('\nPlease enter correct table names/codes:\n')
         new_row.append(["yes", correct_tables, "NA", 'NA', "NA", 'NA', "NA", 'NA'])
+        print('\nThank you for the feedback!')
 
     elif choosen_option == 2:
-        new_row.extend(["no", '-']) # skipping 1st option details
+        new_row.extend(["no", "NA"]) # skipping 1st option details
 
         response = input('\nCan you provide additional correct table(s)? Press `y` for yes, `n` for no: ')
-        additional_tables = "-"
+        additional_tables = "NA"
         if response == 'y':
             additional_tables = input('\nPlease enter additional relevant table names/codes (1 in each line):\n')
         new_row.extend(["yes", additional_tables])
@@ -61,9 +62,10 @@ def get_feedback(question, predicted_sql):
             new_row.extend(["no", predicted_sql])
 
         new_row.extend(["NA", "NA"])
+        print('\nThank you for the feedback!')
 
     elif choosen_option == 3:
-        new_row.extend([0, "-", 0, "-"]) # skipping initial 2 options
+        new_row.extend(["no", "NA", "no", "NA"]) # skipping initial 2 options
 
         response = input('\nWant to register correct SQL? Press `y` for yes, `n` for no: ')
         correct_sql = "NA"
@@ -72,7 +74,8 @@ def get_feedback(question, predicted_sql):
         new_row.extend(["yes", correct_sql])
 
         new_row.extend(["yes", "NA"])
-
+        print('\nThank you for the feedback!')
+    
     elif choosen_option == 4:
         new_row.extend(["no", "NA", "no", "NA", "no", predicted_sql, "yes", "NA"])
         print('\nThank you for the feedback!')
