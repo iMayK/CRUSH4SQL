@@ -102,33 +102,3 @@ def submit_response(new_row):
 def feedback_pipeline(question, predicted_sql):
     feedback_data = get_feedback(question, predicted_sql)
     submit_response(feedback_data)
-
-def prepare_correct_txt_sql_pairs(correct_txt_sql_pairs):
-    worksheet = gc.open_by_url('https://docs.google.com/spreadsheets/d/1PTiGJcXDntJNPVjkFRdgSersW4HqkICQtDc7zezr6w8/edit#gid=0').sheet1
-
-    # get_all_values gives a list of rows.
-    rows = worksheet.get_all_values()
-
-    # Find the last row with data
-    last_row = len(rows)
-
-    for row in rows[1:last_row]:
-        question = row[0]
-        if question not in correct_txt_sql_pairs:
-            if row[-1] == "all_good":
-                sql = row[-3]
-            elif row[-2] == "yes":
-                sql = row[-3]
-            elif row[-4] == "yes" and row[-3] != "NA":
-                sql = row[-3]
-            elif row[-6] == "yes" and row[-3] != "NA":
-                sql = row[-3]
-            else:
-                continue
-            correct_txt_sql_pairs[question] = {
-                'sql': sql
-            }
-    return correct_txt_sql_pairs
-
-
-

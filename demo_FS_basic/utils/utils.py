@@ -1,4 +1,5 @@
 import re
+import pandas as pd
 
 import torch
 
@@ -9,7 +10,28 @@ from utils.greedy_selection import greedy_select
 
 from utils.sql_utils import generate_sql
 
-from utils.feedback_utils import prepare_correct_txt_sql_pairs 
+def prepare_correct_txt_sql_pairs(correct_txt_sql_pairs):
+    sheet_id = '1PTiGJcXDntJNPVjkFRdgSersW4HqkICQtDc7zezr6w8'
+
+    df = pd.read_csv(f"https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=csv")
+
+    for index, row in df.iterrows():
+        question = row['question']
+        if question not in correct_txt_sql_pairs:
+            if row['final_remarks'] == "all_good":
+                sql = row['additional_SQL_feedback']
+            elif row['isNonExecutable'] == "yes":
+                sql = row['additional_SQL_feedback']
+            elif row['isSqlWrongUnsure'] == "yes" and row['additional_SQL_feedback'] != "NA":
+                sql = row['additional_SQL_feedback']
+            elif row['isIncompleteRetrieval'] == "yes" and row['additional_SQL_feedback'] != "NA":
+                sql = row['additional_SQL_feedback']
+            else:
+                continue
+            correct_txt_sql_pairs[question] = {
+                'sql': sql
+            }
+    return correct_txt_sql_pairs
 
 def extract_items(segment):
     # Check if the string matches the pattern word1(word2, word3)
