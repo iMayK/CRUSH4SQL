@@ -79,13 +79,9 @@ def clean_segments(segments):
 def ndap_pipeline(question, api_key, endpoint, correct_txt_sql_pairs):
     decomposition_prompt_used = 'hallucinate_schema_ndap' 
 
-    segments = get_hallucinated_segments(decomposition_prompt_used, question, api_key, endpoint)
-    print('\nHallucinated schema:')
-    for segment in segments:
-        print(segment)
+    hallucinated_schema = get_hallucinated_segments(decomposition_prompt_used, question, api_key, endpoint)
 
-    segments = clean_segments(segments)
-    # print('\nGenerated segments: ', segments)
+    segments = clean_segments(hallucinated_schema)
 
     scored_docs = get_scored_docs(question, segments, api_key, endpoint)
 
@@ -105,11 +101,8 @@ def ndap_pipeline(question, api_key, endpoint, correct_txt_sql_pairs):
         prompting_type = 'base'
         fewshot_examples = []
 
-    prompt, response, schema = generate_sql(sql_input, prompting_type=prompting_type, fewshot_examples=fewshot_examples)
+    input_prompt, pred_sql, pred_schema = generate_sql(sql_input, prompting_type=prompting_type, fewshot_examples=fewshot_examples)
 
-    print(f'\nInput prompt:\n {prompt}\n')
-    print(response)
-
-    return response
+    return hallucinated_schema, pred_schema, pred_sql
 
 
