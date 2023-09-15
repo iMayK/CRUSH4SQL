@@ -73,6 +73,7 @@ def generate(prompt, api_type, api_key, endpoint, api_version):
                 return f"An error occured: {str(e)}"
         return response['choices'][0]['message']['content'] 
     else:
+        openai.api_key = api_key
         model_name = 'gpt-3.5-turbo-16k'
         response = ''
         try:

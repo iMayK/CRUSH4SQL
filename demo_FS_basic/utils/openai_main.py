@@ -93,6 +93,7 @@ def get_openai_embedding(query, api_type, api_key, endpoint, api_version):
             engine=deployment_name # engine should be set to the deployment name you chose when you deployed the text-embedding-ada-002 (Version 2) model
         )
     else:
+        openai.api_key = api_key
         model_id = "text-embedding-ada-002"
         embedding = openai.Embedding.create(
             input=query,
@@ -123,6 +124,7 @@ def get_hallucinated_segments(prompt_type, query, api_type, api_key, endpoint, a
         )
         text = response['choices'][0]['text']
     else:
+        openai.api_key = api_key
         response = openai.Completion.create(
             model="text-davinci-003",
             prompt=prompt, 

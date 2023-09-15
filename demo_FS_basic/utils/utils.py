@@ -45,12 +45,12 @@ def extract_items(segment):
     else:
         return None
 
-def get_relevant_fewshot_examples(question, correct_txt_sql_pairs, api_type, api_key, endpoint, topk=5):
+def get_relevant_fewshot_examples(question, correct_txt_sql_pairs, api_type, api_key, endpoint, api_version, topk=5):
     for item in correct_txt_sql_pairs:
         if 'embedding' not in correct_txt_sql_pairs[item]:
-            correct_txt_sql_pairs[item]['embedding'] = get_openai_embedding(item, api_type, api_key, endpoint)
+            correct_txt_sql_pairs[item]['embedding'] = get_openai_embedding(item, api_type, api_key, endpoint, api_version)
 
-    question_embedding = get_openai_embedding(question, api_type, api_key, endpoint)
+    question_embedding = get_openai_embedding(question, api_type, api_key, endpoint, api_version)
     
     list_items = list(correct_txt_sql_pairs.keys())
     similarity_scores = torch.nn.functional.cosine_similarity(

@@ -70,11 +70,12 @@ def get_scored_docs(
     api_type,
     api_key,
     endpoint,
+    api_version,
     aggr_type='max'
 ):
     A = []
     for segment in segments:
-        A.append(get_openai_embedding(segment, api_type, api_key, endpoint))
+        A.append(get_openai_embedding(segment, api_type, api_key, endpoint, api_version))
     #A = torch.stack(A).to(device)                                         # num_of_segments x d                                                      
     A = torch.stack(A)                                                     # num_of_segments x d                                                      
         
