@@ -67,7 +67,7 @@ PROMPT = {
     )
 }
 
-def get_openai_embedding(query, api_key, endpoint):
+def get_openai_embedding(query, api_type, api_key, endpoint, api_version):
     """
     Get text embedding using the Azure OpenAI API.
 
@@ -75,45 +75,64 @@ def get_openai_embedding(query, api_key, endpoint):
         query (str): The input text query to be embedded.
         api_key (str): Your Azure OpenAI API key.
         endpoint (str): The Azure OpenAI API endpoint.
+        api_type (str): whether azure or python 
+        api_version (str): The Azure OpenAI API version.
 
     Returns:
         torch.Tensor: A tensor representing the text embedding.
     """
-    openai.api_type = "azure"
-    openai.api_key = api_key
-    openai.api_base = endpoint
-    openai.api_version = "2023-05-15"
+    if api_type == "azure":
+        openai.api_type = "azure"
+        openai.api_key = api_key
+        openai.api_base = endpoint
+        openai.api_version = api_version 
 
-    deployment_name='text-embedding-ada-002'
-    embedding = get_embedding(
-        query,
-        engine=deployment_name # engine should be set to the deployment name you chose when you deployed the text-embedding-ada-002 (Version 2) model
-    )
+        deployment_name='text-embedding-ada-002'
+        embedding = get_embedding(
+            query,
+            engine=deployment_name # engine should be set to the deployment name you chose when you deployed the text-embedding-ada-002 (Version 2) model
+        )
+    else:
+        model_id = "text-embedding-ada-002"
+        embedding = openai.Embedding.create(
+            input=query,
+            model=model_id
+        )['data'][0]['embedding']
+
     # embedding will be a list of len dimension of vector
     embedding_tensor = torch.Tensor(embedding)
-    
     return embedding_tensor
 
-def get_hallucinated_segments(prompt_type, query, api_key, endpoint, max_tokens=1000, temperature=0):
-    openai.api_type = "azure"
-    openai.api_key = api_key
-    openai.api_base = endpoint
-    openai.api_version = "2023-05-15"
-
-    deployment_name = 'prefix-text-davinci-003' #This will correspond to the custom name you chose for your deployment when you deployed a model. 
+def get_hallucinated_segments(prompt_type, query, api_type, api_key, endpoint, api_version, max_tokens=1000, temperature=0):
     prompt = PROMPT[prompt_type].format(query)
+    if api_type == "azure":
+        openai.api_type = "azure"
+        openai.api_key = api_key
+        openai.api_base = endpoint
+        openai.api_version = api_version 
 
-    response = openai.Completion.create(
-        engine=deployment_name,
-        prompt=prompt,
-        max_tokens=max_tokens,
-        temperature=temperature,
-        top_p=1,
-        frequency_penalty=0,
-        presence_penalty=0
-    )
-
-    text = response['choices'][0]['text']
+        deployment_name = 'prefix-text-davinci-003' #This will correspond to the custom name you chose for your deployment when you deployed a model. 
+        response = openai.Completion.create(
+            engine=deployment_name,
+            prompt=prompt,
+            max_tokens=max_tokens,
+            temperature=temperature,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0
+        )
+        text = response['choices'][0]['text']
+    else:
+        response = openai.Completion.create(
+            model="text-davinci-003",
+            prompt=prompt, 
+            max_tokens=max_tokens,
+            temperature=temperature,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0
+        )
+        text = response.choices[0].text
 
     try:
         segments = [l for l in text.splitlines() if l != ""]
@@ -126,11 +145,12 @@ def main():
 
     query = "What is the debt-GDP ratio of India?"
 
+    api_type = 'azure'
     api_key = input('AZURE_OPENAI_API_KEY: ')
     endpoint = input('AZURE_OPENAI_ENDPOINT: ')
 
     ### test generating query embedding
-    #embedding = get_openai_embedding(query, api_key, endpoint)
+    #embedding = get_openai_embedding(query, api_type, api_key, endpoint)
     #print(query)
     #print(embedding.shape)
 
@@ -142,7 +162,7 @@ def main():
         #print()
 
     print('query: ', query)
-    segments = get_hallucinated_segments('hallucinate_schema_ndap', query, api_key, endpoint)
+    segments = get_hallucinated_segments('hallucinate_schema_ndap', query, api_type, api_key, endpoint)
     print(segments)
 
 

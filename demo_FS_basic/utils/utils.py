@@ -45,12 +45,12 @@ def extract_items(segment):
     else:
         return None
 
-def get_relevant_fewshot_examples(question, correct_txt_sql_pairs, api_key, endpoint, topk=5):
+def get_relevant_fewshot_examples(question, correct_txt_sql_pairs, api_type, api_key, endpoint, topk=5):
     for item in correct_txt_sql_pairs:
         if 'embedding' not in correct_txt_sql_pairs[item]:
-            correct_txt_sql_pairs[item]['embedding'] = get_openai_embedding(item, api_key, endpoint)
+            correct_txt_sql_pairs[item]['embedding'] = get_openai_embedding(item, api_type, api_key, endpoint)
 
-    question_embedding = get_openai_embedding(question, api_key, endpoint)
+    question_embedding = get_openai_embedding(question, api_type, api_key, endpoint)
     
     list_items = list(correct_txt_sql_pairs.keys())
     similarity_scores = torch.nn.functional.cosine_similarity(
@@ -76,14 +76,14 @@ def clean_segments(segments):
     segments = [segment for segment in segments if "." in segment]
     return segments
 
-def ndap_pipeline(question, api_key, endpoint, correct_txt_sql_pairs):
+def ndap_pipeline(question, api_type, api_key, endpoint, api_version, correct_txt_sql_pairs):
     decomposition_prompt_used = 'hallucinate_schema_ndap' 
 
-    hallucinated_schema = get_hallucinated_segments(decomposition_prompt_used, question, api_key, endpoint)
+    hallucinated_schema = get_hallucinated_segments(decomposition_prompt_used, question, api_type, api_key, endpoint, api_version)
 
     segments = clean_segments(hallucinated_schema)
 
-    scored_docs = get_scored_docs(question, segments, api_key, endpoint)
+    scored_docs = get_scored_docs(question, segments, api_type, api_key, endpoint, api_version)
 
     greedy_docs = greedy_select(segments, scored_docs, BUDGET=20)
 
@@ -96,12 +96,20 @@ def ndap_pipeline(question, api_key, endpoint, correct_txt_sql_pairs):
 
     if len(correct_txt_sql_pairs) > 0:
         prompting_type = 'fewshot'
-        fewshot_examples = get_relevant_fewshot_examples(question, correct_txt_sql_pairs, api_key, endpoint, topk=3)
+        fewshot_examples = get_relevant_fewshot_examples(question, correct_txt_sql_pairs, api_type, api_key, endpoint, api_version, topk=3)
     else:
         prompting_type = 'base'
         fewshot_examples = []
 
-    input_prompt, pred_sql, pred_schema = generate_sql(sql_input, prompting_type=prompting_type, fewshot_examples=fewshot_examples)
+    input_prompt, pred_sql, pred_schema = generate_sql(
+        sql_input,
+        api_type,
+        api_key,
+        endpoint,
+        api_version,
+        prompting_type=prompting_type,
+        fewshot_examples=fewshot_examples,
+    )
 
     return hallucinated_schema, pred_schema, pred_sql
 

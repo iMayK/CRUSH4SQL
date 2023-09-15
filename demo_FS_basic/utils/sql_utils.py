@@ -42,19 +42,15 @@ def create_schema_str(schema):
         schema_str += '),\n'
     return schema_str
 
-def generate(prompt):
-    deployment_name = 'chatgpt-35-16k'
-    response = '' 
-    try:
-        response = openai.ChatCompletion.create(
-            engine = deployment_name,
-            messages=[
-                    {"role": "system", "content": prompt},
-                ],
-            temperature=0
-        )
-    except Exception as e:
-        time.sleep(10)
+def generate(prompt, api_type, api_key, endpoint, api_version):
+    if api_type == 'azure':
+        openai.api_type = "azure"
+        openai.api_key = api_key
+        openai.api_base = endpoint
+        openai.api_version = api_version 
+
+        deployment_name = 'chatgpt-35-16k'
+        response = '' 
         try:
             response = openai.ChatCompletion.create(
                 engine = deployment_name,
@@ -64,10 +60,44 @@ def generate(prompt):
                 temperature=0
             )
         except Exception as e:
-            return f"An error occured: {str(e)}"
-    return response['choices'][0]['message']['content'] 
+            time.sleep(10)
+            try:
+                response = openai.ChatCompletion.create(
+                    engine = deployment_name,
+                    messages=[
+                            {"role": "system", "content": prompt},
+                        ],
+                    temperature=0
+                )
+            except Exception as e:
+                return f"An error occured: {str(e)}"
+        return response['choices'][0]['message']['content'] 
+    else:
+        model_name = 'gpt-3.5-turbo-16k'
+        response = ''
+        try:
+            response = openai.ChatCompletion.create(
+                model=model_name,
+                messages=[
+                        {"role": "system", "content": prompt},
+                    ],
+                temperature=0
+            )
+        except Exception as e:
+            time.sleep(10)
+            try:
+                response = openai.ChatCompletion.create(
+                    model=model_name,
+                    messages=[
+                            {"role": "system", "content": prompt},
+                        ],
+                    temperature=0
+                )
+            except Exception as e:
+                return f"An error occured: {str(e)}"
+        return response.choices[0].message.content
 
-def generate_sql(item, prompting_type='base', fewshot_examples=[]):
+def generate_sql(item, api_type, api_key, endpoint, api_version, prompting_type='base', fewshot_examples=[]):
     schema = create_schema(item['docs'])
     schema_str = create_schema_str(schema)
 
@@ -82,7 +112,7 @@ def generate_sql(item, prompting_type='base', fewshot_examples=[]):
         for idx, item in enumerate(fewshot_examples):
             examples += f"Question {idx+1}: {item['question']}\nSQL: {item['sql']}\n\n"
         prompt = prompt_template.format(question, schema_str, examples, question)  
-    pred_sql = generate(prompt)
+    pred_sql = generate(prompt, api_type, api_key, endpoint, api_version)
 
     return prompt, pred_sql, schema_str
 

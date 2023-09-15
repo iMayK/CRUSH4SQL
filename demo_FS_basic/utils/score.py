@@ -67,13 +67,14 @@ def ranking(A, B, list_schema_elements, segments, aggr_type="max"):
 def get_scored_docs(
     question,
     segments,
+    api_type,
     api_key,
     endpoint,
     aggr_type='max'
 ):
     A = []
     for segment in segments:
-        A.append(get_openai_embedding(segment, api_key, endpoint))
+        A.append(get_openai_embedding(segment, api_type, api_key, endpoint))
     #A = torch.stack(A).to(device)                                         # num_of_segments x d                                                      
     A = torch.stack(A)                                                     # num_of_segments x d                                                      
         
