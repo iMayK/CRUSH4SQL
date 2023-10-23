@@ -1,5 +1,5 @@
 # CRUSH4SQL
-## Collective Retrieval Using Schema Hallucination For Text2SQL
+Collective Retrieval Using Schema Hallucination For Text2SQL
 
 * Research paper and dataset information Coming soon* ✨
 
