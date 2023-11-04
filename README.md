@@ -1,4 +1,4 @@
-# CRUSH4SQL
+## CRUSH4SQL
 Mayank Kothyari, Dhruva Dhingra, Sunita Sarawagi, Soumen Chakrabarti.
 [Collective Retrieval Using Schema Hallucination For Text2SQL](https://arxiv.org/abs/2311.01173). *EMNLP 2023*
 
