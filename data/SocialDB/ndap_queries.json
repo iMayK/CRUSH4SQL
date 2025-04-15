@@ -1,0 +1,538 @@
+[
+    {
+        "question": "what is the health centre per population ratio at village level for year 2011?",
+        "gold_codes": [
+            "7035",
+            "6000"
+        ]
+    },
+    {
+        "question": "what is the maternal mortality ratio for the year 2020-21 in the state of kerala?",
+        "gold_codes": [
+            "7356",
+            "7100"
+        ]
+    },
+    {
+        "question": "what is the correlation between child immunization and mother education at district, state or country level?",
+        "gold_codes": [
+            "7067"
+        ]
+    },
+    {
+        "question": "does health insurance services in any state has any relation with the prevelance of non-communicable diseases?",
+        "gold_codes": [
+            "7046",
+            "7360"
+        ]
+    },
+    {
+        "question": "what is the correlation between the availability of health services and socio-economic status in a state??",
+        "gold_codes": [
+            "7068"
+        ]
+    },
+    {
+        "question": "how does health worker training correlate with the health services provided at district level and which type of training has the most impact?",
+        "gold_codes": [
+            "7068"
+        ]
+    },
+    {
+        "question": "how does health worker training correlate with the health services provided at state level and which type of training has the most impact?",
+        "gold_codes": [
+            "7068"
+        ]
+    },
+    {
+        "question": "what was the health facilities per population ratio at district level for year 2011?",
+        "gold_codes": [
+            "6000",
+            "7035"
+        ]
+    },
+    {
+        "question": "what is the impact of access to toilets and clean drinking water on community health and nutrition outcomes?",
+        "gold_codes": [
+            "7352"
+        ]
+    },
+    {
+        "question": "how mental health status differ across gender?",
+        "gold_codes": [
+            "7213"
+        ]
+    },
+    {
+        "question": "how much funds were allocated by the states towards health?",
+        "gold_codes": [
+            "6066"
+        ]
+    },
+    {
+        "question": "what is the ratio of different types of medical professionals per population at village or district level?",
+        "gold_codes": [
+            "7121",
+            "7037"
+        ]
+    },
+    {
+        "question": "how covid-19 impacted infant and child health?",
+        "gold_codes": [
+            "6822",
+            "7143"
+        ]
+    },
+    {
+        "question": "what is the correlation between mother and child health?",
+        "gold_codes": [
+            "6821"
+        ]
+    },
+    {
+        "question": "how awareness among women impact births in caesarean section?",
+        "gold_codes": [
+            "6821"
+        ]
+    },
+    {
+        "question": "what is the correlation between health infrastructure and funding?",
+        "gold_codes": [
+            "7035",
+            "6066",
+            "7037"
+        ]
+    },
+    {
+        "question": "what is the  correlation between child nourishment and parental education?",
+        "gold_codes": [
+            "7034",
+            "6000"
+        ]
+    },
+    {
+        "question": "what are the determinants of health at a community level?",
+        "gold_codes": [
+            "7508"
+        ]
+    },
+    {
+        "question": "what is the correlation between non-communicable diseases and food habits at the state level?",
+        "gold_codes": [
+            "7046",
+            "7045"
+        ]
+    },
+    {
+        "question": "what is the correlation between socio-economic status and health insurance enrollments?",
+        "gold_codes": [
+            "6822"
+        ]
+    },
+    {
+        "question": "how easy it is to access mental health services in health facilities?",
+        "gold_codes": [
+            "7213"
+        ]
+    },
+    {
+        "question": "how health centre infrastructure impacts vacancies at the centre?",
+        "gold_codes": [
+            "7037"
+        ]
+    },
+    {
+        "question": "what is the correlation between infrastructure availability in academic institutions and patent filing in drug discovery and medical devices innovation?",
+        "gold_codes": [
+            "7370"
+        ]
+    },
+    {
+        "question": "what is the survelliance data on vaccine preventable diseases?",
+        "gold_codes": [
+            "6821",
+            "7068"
+        ]
+    },
+    {
+        "question": "how smart phones impact adoption of digital health services?",
+        "gold_codes": [
+            "6337",
+            "7108",
+            "7121"
+        ]
+    },
+    {
+        "question": "what is the correlation between pradhan mantri jan arogya yojana and hospital empanelment?",
+        "gold_codes": [
+            "7289",
+            "7360"
+        ]
+    },
+    {
+        "question": "what are the costs involved in pradhan mantri jan arogya yojana?",
+        "gold_codes": [
+            "7289",
+            "7360"
+        ]
+    },
+    {
+        "question": "what is correlation between tb and pollution in a region?",
+        "gold_codes": [
+            "7356",
+            "7352"
+        ]
+    },
+    {
+        "question": "how parents education impacts child nourishment?",
+        "gold_codes": [
+            "6822",
+            "6000"
+        ]
+    },
+    {
+        "question": "how household expenditure affect nutritional outcomes for children?",
+        "gold_codes": [
+            "6822",
+            "7128"
+        ]
+    },
+    {
+        "question": "what is the number of awcs per district statewise?",
+        "gold_codes": [
+            "6000",
+            "7121"
+        ]
+    },
+    {
+        "question": "what is the spread of children in different age groups in rural and urban areas?",
+        "gold_codes": [
+            "6000"
+        ]
+    },
+    {
+        "question": "what is the correlation between type of area i.e. rural or urban on pregnant and lactating mothers?",
+        "gold_codes": [
+            "7312"
+        ]
+    },
+    {
+        "question": "what is the correlation between undernutrition and mortality indicators (imr, u5mr,neonatal mortality)?",
+        "gold_codes": [
+            "6821",
+            "7046",
+            "7045"
+        ]
+    },
+    {
+        "question": "what is the correlation between crime against women (domestic violence against women) and its association with maternal and child nutrition indicators such as stunting, wasting, underweight and anaemia?",
+        "gold_codes": [
+            "7042",
+            "6281"
+        ]
+    },
+    {
+        "question": "how women literacy rates and female labor force participation impact nutritional outcomes?",
+        "gold_codes": [
+            "6822",
+            "6000",
+            "7120"
+        ]
+    },
+    {
+        "question": "what is the correlation between the iycf practices and women literacy status?",
+        "gold_codes": [
+            "6822",
+            "7623",
+            "6000"
+        ]
+    },
+    {
+        "question": "what is the correlation between iycf practices and urban slum/rural population?",
+        "gold_codes": [
+            "6822",
+            "7623",
+            "7121"
+        ]
+    },
+    {
+        "question": "what is the correlation between sanitization coverage, nutrition outcome indicators, and diarrhoea ?",
+        "gold_codes": [
+            "6822",
+            "7623",
+            "7367",
+            "7160"
+        ]
+    },
+    {
+        "question": "wha is the correlation between literacy and utilization of service uptake?",
+        "gold_codes": [
+            "6000"
+        ]
+    },
+    {
+        "question": "what is the percentage of awc that are housed in the schools premises in a district or state?",
+        "gold_codes": [
+            "7121",
+            "7371"
+        ]
+    },
+    {
+        "question": "what is the average wholesale price index of food articles for the base year 2010-11?",
+        "gold_codes": [
+            "6092"
+        ]
+    },
+    {
+        "question": "what is the percentage of supply of jobs to demand of jobs under mgnrega at state level?",
+        "gold_codes": [
+            "6026"
+        ]
+    },
+    {
+        "question": "how female participation in the labour force impact child nourishment?",
+        "gold_codes": [
+            "7125",
+            "6822",
+            "7120"
+        ]
+    },
+    {
+        "question": "what is the correlation between female labour force participation and child nourshiment or hunger reduction?",
+        "gold_codes": [
+            "7125",
+            "6822",
+            "7120"
+        ]
+    },
+    {
+        "question": "Which Group contributes the most to inflation ?",
+        "gold_codes": [
+            "7466",
+            "7467"
+        ]
+    },
+    {
+        "question": "What is the trend for CPI of goods exlcuding food and fuel?",
+        "gold_codes": [
+            "7466",
+            "7467"
+        ]
+    },
+    {
+        "question": "What is the trend for CPI combined?",
+        "gold_codes": [
+            "7466",
+            "7467"
+        ]
+    },
+    {
+        "question": "What is the growth rate of real GDP for the last 10 years or 20 years?",
+        "gold_codes": [
+            "6680",
+            "7463",
+            "7462"
+        ]
+    },
+    {
+        "question": "What is the share of the Private Final Consumption Expenditure in the last 10 years?",
+        "gold_codes": [
+            "6680",
+            "7463",
+            "7462"
+        ]
+    },
+    {
+        "question": "What contributes the highest share in the GDP?",
+        "gold_codes": [
+            "6680",
+            "7463",
+            "7462"
+        ]
+    },
+    {
+        "question": "Trend of Total Import Volume of Principal Commodities based on Old commodity classification over a period of 20 years?",
+        "gold_codes": [
+            "7452"
+        ]
+    },
+    {
+        "question": "Trend of Total Import Volume of Principal Commodities based on New commodity classification as per 2009-10 over a period of 10 years?",
+        "gold_codes": [
+            "7453"
+        ]
+    },
+    {
+        "question": "Trend of Total Export Volume of Select Commodities to Principal Countries based on Old commodity classification over a period of 20 years?",
+        "gold_codes": [
+            "7454"
+        ]
+    },
+    {
+        "question": "Trend of Total Export Volume of Select Commodities to Principal Countries based on New commodity classification as per 2009-10 over a period of 5 years?",
+        "gold_codes": [
+            "7455"
+        ]
+    },
+    {
+        "question": "What is the average inflation growth in last 5 years?",
+        "gold_codes": [
+            "7466",
+            "7467"
+        ]
+    },
+    {
+        "question": "Trend of Macroeconomic and Financial Indicators in the last 10 years ?",
+        "gold_codes": [
+            "7461"
+        ]
+    },
+    {
+        "question": "Which sector contributed the most to the growth of WPI and CPI?",
+        "gold_codes": [
+            "7466",
+            "7467",
+            "7461"
+        ]
+    },
+    {
+        "question": "Which are the top 5 commodities (Old commodity classification) imported in India?",
+        "gold_codes": [
+            "7452"
+        ]
+    },
+    {
+        "question": "Which are the top 5 commodities (New commodity classification as per 2009-10) imported in India?",
+        "gold_codes": [
+            "7453"
+        ]
+    },
+    {
+        "question": "Which are the top 5 commodities (Old commodity classification) exported from India?",
+        "gold_codes": [
+            "7454"
+        ]
+    },
+    {
+        "question": "Which are the top 5 commodities (New commodity classification as per 2009-10) exported from India?",
+        "gold_codes": [
+            "7455"
+        ]
+    },
+    {
+        "question": "Year wise list of India's biggest export destination countries in the past 10 years?",
+        "gold_codes": [
+            "7452",
+            "7453",
+            "7454",
+            "7455"
+        ]
+    },
+    {
+        "question": "Which was the most profitable scheduled commercial bank in India?",
+        "gold_codes": [
+            "7478",
+            "7474"
+        ]
+    },
+    {
+        "question": "Which was the least profitable scheduled commercial bank in India?",
+        "gold_codes": [
+            "7478",
+            "7474"
+        ]
+    },
+    {
+        "question": "Which  Central Public Sector Enterprise generated most employment in the 10 years?",
+        "gold_codes": [
+            "7228"
+        ]
+    },
+    {
+        "question": "Which year had the highest Yield to maturity (ytm) in last 5 years?",
+        "gold_codes": [
+            "6664"
+        ]
+    },
+    {
+        "question": "What was the highest coupon rate among the Government Securities issued to National Social Security Fund (NSSF) in last 5 or 10 years ?",
+        "gold_codes": [
+            "6664",
+            "6690",
+            "6703"
+        ]
+    },
+    {
+        "question": "Which Government security instrument had the maximum Secondary market transactions in last 5 or 10 years?",
+        "gold_codes": [
+            "6664",
+            "6690",
+            "6703"
+        ]
+    },
+    {
+        "question": "Correlation between agricultural household consumption, income and assets",
+        "gold_codes": [
+            "6036",
+            "6138",
+            "7221",
+            "7215",
+            "7281"
+        ]
+    },
+    {
+        "question": "Correlation between household consumption, income and assets",
+        "gold_codes": [
+            "6036",
+            "6138",
+            "7221",
+            "7215",
+            "7281"
+        ]
+    },
+    {
+        "question": "Trend of changes in financial assets and liabilities of households?",
+        "gold_codes": [
+            "7436"
+        ]
+    },
+    {
+        "question": "Correlation between number of bank branches and district growth?",
+        "gold_codes": [
+            "6320",
+            "6321",
+            "6322",
+            "6319",
+            "6324"
+        ]
+    },
+    {
+        "question": "Which district in India has the highest number of bank branches?",
+        "gold_codes": [
+            "6320",
+            "6321",
+            "6322",
+            "6319",
+            "6324"
+        ]
+    },
+    {
+        "question": "Trend in Disbursements of Housing Loans to Individuals",
+        "gold_codes": [
+            "7491",
+            "7490"
+        ]
+    },
+    {
+        "question": "Trend of Interest Rates of Small Savings Instruments by Government",
+        "gold_codes": [
+            "6672"
+        ]
+    },
+    {
+        "question": "What is the Coverage status of Aam Aadmi Bima Yojana?",
+        "gold_codes": [
+            "6315"
+        ]
+    }
+]
