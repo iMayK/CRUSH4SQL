@@ -9,3 +9,14 @@ Mayank Kothyari, Dhruva Dhingra, Sunita Sarawagi, Soumen Chakrabarti.
 
 ## Demo
 You can try out our demo for SocialDB by running the [CRUSH_demo.ipynb](demo/CRUSH_demo.ipynb) notebook.
+
+## SocialDB dataset
+You can access the dataset at `data/SocialDB`.
+
+- `ndap_queries.json` contains the all queries with their corresponding gold tables.
+- `ndap_super.json` contains all the tables in the dataset. Each table has the following information:
+    - `code`: unique identifier for the table
+    - `name`: name of the table
+    - `overview`: description of the table's contents and purpose
+    - `source`: domain the table belongs to (e.g., agriculture, finance, etc.)
+    - `columns`: columns in the table
